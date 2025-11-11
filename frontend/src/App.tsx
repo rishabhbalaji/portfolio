@@ -1,42 +1,26 @@
 // src/App.tsx
-import {useState, useEffect} from 'react'
-import client from './client' // Import our new client
+import { Routes, Route } from 'react-router-dom'
 
-// Define a type for our project data
-interface Project {
-  _id: string;
-  title: string;
-}
+// Import our components
+import MainLayout from './components/MainLayout'
+import HomePage from './pages/HomePage'
+import ProjectsPage from './pages/ProjectsPage'
+import CertsPage from './pages/CertsPage'
 
 function App() {
-  const [projects, setProjects] = useState<Project[]>([])
-
-  useEffect(() => {
-    // This is a GROQ query to fetch all documents of type 'project'
-    const query = '*[_type == "project"]{_id, title}'
-
-    client.fetch(query)
-      .then((data: Project[]) => {
-        setProjects(data)
-      })
-      .catch(console.error)
-  }, []) // The empty array means this runs once on page load
-
   return (
-    <div style={{padding: '2rem'}}>
-      <h1>My Portfolio</h1>
-      <h2>Projects from Sanity:</h2>
+    <Routes>
+      {/* The MainLayout wraps the whole app */}
+      <Route path="/" element={<MainLayout />}>
+        {/* Our main pages */}
+        <Route index element={<HomePage />} />
+        <Route path="projects" element={<ProjectsPage />} />
+        <Route path="certifications" element={<CertsPage />} />
 
-      {projects.length > 0 ? (
-        <ul>
-          {projects.map((project) => (
-            <li key={project._id}>{project.title}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>Loading projects...</p>
-      )}
-    </div>
+        {/* 404 Route */}
+        <Route path="*" element={<h1>404: Page Not Found</h1>} />
+      </Route>
+    </Routes>
   )
 }
 
