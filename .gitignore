@@ -1,0 +1,18 @@
+# Node
+node_modules/
+
+# Sanity
+# (Sanity projects are often self-contained, but just in case)
+sanity/dist/
+sanity/node_modules/
+
+# Frontend (Vite)
+frontend/dist/
+frontend/node_modules/
+frontend/.DS_Store
+frontend/.env.local
+frontend/.env
+
+# General
+.DS_Store
+*.log
