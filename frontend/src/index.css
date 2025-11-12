@@ -103,3 +103,13 @@ nav a.active-nav-link {
   color: var(--color-accent-primary);
   border-bottom: 2px solid var(--color-accent-primary);
 }
+
+div[style*="--line-color: var(--color-border)"]::before {
+  content: '';
+  position: absolute;
+  left: 8px; /* Aligns with the center of the dot */
+  top: 0.25rem;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--line-color);
+}

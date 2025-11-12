@@ -1,7 +1,7 @@
 // src/pages/HomePage.tsx
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import AboutMe from '../components/AboutMe';
 // --- Icon Filenames ---
 // The component will load these from the `public/icons/` folder.
 // I'm using your 10 variants from the Figma JSON.
@@ -143,6 +143,7 @@ const HomePage = () => {
   return (
     <>
       <Hero />
+      <AboutMe />
     </>
   );
 };
